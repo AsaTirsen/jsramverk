@@ -5,21 +5,22 @@ import {
     Route,
 } from 'react-router-dom'
 import Reports from "./Reports.js"
-import Home from "./Me.js"
+import Me from "./Me.js"
+import './style/App.scss'
 
 
 class App extends React.Component {
     render() {
         return (
             <Router>
-                <div style={{width: 1000, margin: '0 auto'}}>
-                    <ul>
-                        <li><Link to='/'>Home</Link></li>
+                <div className='main'>
+                    <ul className='topnav'>
+                        <li><Link to='/'>Me-sida</Link></li>
                         <li><Link to='/reports'>Redovisningar</Link></li>
                     </ul>
 
                     <hr/>
-                    <Route exact path='/' component={Home}/>
+                    <Route exact path='/' component={Me}/>
                     <Route path='/reports' component={Reports}/>
 
                 </div>
