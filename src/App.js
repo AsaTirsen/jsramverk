@@ -13,17 +13,12 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className='main'>
                     <ul className='topnav'>
-                        <li><Link to='/'>Me-sida</Link></li>
-                        <li><Link to='/reports'>Redovisningar</Link></li>
+                        <li className='navlist'><Link className='navlinks' to='/'>Me-sida</Link></li>
+                        <li className='navlist'><Link className='navlinks' to='/reports'>Redovisningar</Link></li>
                     </ul>
-
-                    <hr/>
-                    <Route exact path='/' component={Me}/>
+                 <Route exact path='/' component={Me}/>
                     <Route path='/reports' component={Reports}/>
-
-                </div>
             </Router>
         )
     }

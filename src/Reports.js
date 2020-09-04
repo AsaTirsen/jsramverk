@@ -7,13 +7,13 @@ import {
 
 const reports = [
     {
-        name: 'week1',
+        name: 'Redovisning vecka 1',
         id:1,
         description: 'Redovisningstexter',
         url: 'week/1'
     },
     {
-        name: 'week2',
+        name: 'Redovisning vecka 1',
         id:2,
         description: 'Redovisningstexter2',
         url: 'week/2'
@@ -22,17 +22,16 @@ const reports = [
 
 function Reports() {
     return (
-        <div>
+        <div className='main'>
             <h1>Redovisningar</h1>
             <ul>
                 {reports.map(({name, id}) => (
                     <li key={id}>
-                        <Link to={`/reports/week/${id}`}>{name}</Link>
+                        <Link className='reportlink' to={`/reports/week/${id}`}>{name}</Link>
                     </li>
                 ))}
             </ul>
-            <hr/>
-
+            <hr />
             <Route path={`/reports/week/:reportId`} component={Report}/>
         </div>
     )

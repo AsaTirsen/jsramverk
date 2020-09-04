@@ -1,18 +1,27 @@
 //styles the ul element
 .topnav {
-  background-color: #96b9b9;
+  background-color: #2d5c8a;
   color: white;
   padding: 1em 0 1em 0;
   list-style: none;
+  width: 70%;
+  height: 2em;
+  margin: 0 auto;
 }
 
-li{
+.navlist {
   float: left;
 }
 
-a {
+.navlinks {
   text-decoration: none;
   color: white;
   margin-left: 1em;
   padding-bottom: 1em;
+}
+
+@media (max-width: 667px) {
+  .topnav {
+    width: 100%;
+  }
 }
