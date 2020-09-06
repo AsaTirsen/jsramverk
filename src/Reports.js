@@ -3,22 +3,7 @@ import {
     Route,
     Link,
 } from 'react-router-dom'
-
-
-const reports = [
-    {
-        name: 'Redovisning vecka 1',
-        id:1,
-        description: 'Redovisningstexter',
-        url: 'week/1'
-    },
-    {
-        name: 'Redovisning vecka 1',
-        id:2,
-        description: 'Redovisningstexter2',
-        url: 'week/2'
-    },
-]
+import reports from "./ReportSegments";
 
 function Reports() {
     return (
@@ -45,7 +30,7 @@ function Report({match}) {
     return (
         <div>
             <h2>{report.name}</h2>
-            <p>{report.description}</p>
+            <p>{report.content}</p>
         </div>
     )
 }

@@ -1,0 +1,25 @@
+.main {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: #f2f2f2; }
+
+.reportlist {
+  margin-top: 1em; }
+
+.topnav {
+  background-color: #2d5c8a;
+  color: white;
+  padding: 1em 0 1em 0;
+  list-style: none;
+  width: 1000px;
+  height: 2em;
+  margin: 0 auto; }
+
+li {
+  float: left; }
+
+.navlinks {
+  text-decoration: none;
+  color: white;
+  margin-left: 1em;
+  padding-bottom: 1em; }
