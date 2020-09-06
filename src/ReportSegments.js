@@ -1,7 +1,8 @@
 import React from 'react';
 import { Markup } from 'interweave';
 
-const articleContent = "<p>This project was bootstrapped with <a href=\"https://github.com/facebook/create-react-app\">Create React App</a>.</p>\n" +
+const articleContent = "<p><a href='https://github.com/AsaTirsen/jsramverk'>Länk till mit GitHub repo." +
+    "</a></p><p>This project was bootstrapped with <a href=\"https://github.com/facebook/create-react-app\">Create React App</a>.</p>\n" +
     "<h2 id=\"available-scripts\">Available Scripts</h2>\n" +
     "<p>In the project directory, you can run:</p>\n" +
     "<h3 id=\"-npm-start-\"><code>npm start</code></h3>\n" +
