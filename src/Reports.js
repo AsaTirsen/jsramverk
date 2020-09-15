@@ -1,38 +1,37 @@
-import React from 'react'
-import {
-    Route,
-    Link,
-} from 'react-router-dom'
-import reports from "./ReportSegments";
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
-function Reports() {
-    return (
-        <div className='main'>
-            <h1>Redovisningar</h1>
-            <ul>
-                {reports.map(({name, id}) => (
-                    <li key={id}>
-                        <Link className='reportlink' to={`/reports/week/${id}`}>{name}</Link>
-                    </li>
-                ))}
-            </ul>
-            <hr />
-            <Route path={`/reports/week/:reportId`} component={Report}/>
-        </div>
-    )
-}
+const ReportLink = ({match}) => {
+        // const kmom = match.params.kmom;
+        const [reports, setReports] = useState([]);
 
+        useEffect(() => {
+            console.log('fetch')
+            fetch('http://localhost:1337/reports/')
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res.data)
+                    setReports(res.data)
+                    console.log(setReports(res.data))
+                });
+        }, []);
 
-function Report({match}) {
-    console.log(match)
-    const report = reports.find(({id}) => id.toString() === match.params.reportId)
+        return (
+            <main>
+                <div className='main'>
+                    <h1>Redovisningar</h1>
+                    <ul>
+                        {reports.map(({id, title, week, longtext}) => (
+                            week &&
+                            <li key={title}>
+                                <Link className='reportlink' to={`/reports/week/${week}`}>{title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </main>
+        );
+    }
+;
 
-    return (
-        <div>
-            <h2>{report.name}</h2>
-            <p>{report.content}</p>
-        </div>
-    )
-}
-
-export default Reports;
+export default ReportLink;

@@ -25,20 +25,20 @@ const articleContent = "<p><a href='https://github.com/AsaTirsen/jsramverk'>Län
     "<p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>\n" +
     "<p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>\n"
 
+//
+// const reports = [
+//     {
+//         name: 'Redovisning vecka 1',
+//         id:1,
+//         content:<Markup content={articleContent} />,
+//         url: 'week/1'
+//     },
+//     {
+//         name: 'Redovisning vecka 2',
+//         id:2,
+//         content: 'Redovisningstexter2',
+//         url: 'week/2'
+//     },
+// ]
 
-const reports = [
-    {
-        name: 'Redovisning vecka 1',
-        id:1,
-        content:<Markup content={articleContent} />,
-        url: 'week/1'
-    },
-    {
-        name: 'Redovisning vecka 2',
-        id:2,
-        content: 'Redovisningstexter2',
-        url: 'week/2'
-    },
-]
-
-export default reports
+//export default reports

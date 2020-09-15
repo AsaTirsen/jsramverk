@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import kids from "./minaBarn.jpeg";
 import "./style/App.scss";
-function Me () {
+
+const Me = () => {
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        console.log('fetch')
+        fetch('http://localhost:1337/')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res.data[0])
+                setMessage(res.data[0])
+            });
+    },[]);
+
     return (
-        <article className= 'main'>
-            <img src={kids} alt="Bild på mina barn" />
+        <main>
+            <article className= 'main'>
+                <h1>{message.title}</h1>
+                <img src={kids} alt="Bild på mina barn" />
+                <div className='textarea'>
+            <p>{message.longtext}</p>
+                </div>
+            </article>
+        </main>
+    );
+};
 
-            <div className='textarea'>
-        <h1>
-            Lite om mig
-        </h1>
-            <p>Jag heter Åsa och pluggar webbprogrammering på BTH. Jag har just påbörjat mitt andra år och läser just nu
-            kursen js ramverk. Det verkar kul och utmanande.</p>
+// function Me () {
+//     return (
 
-            <p>Här är en bild på mina barn när de njuter av skogens alla blåbär strax efter att vi återvände till Sverige
-            efter ett drygt år i Australien.</p>
-            </div>
-        </article>
-    )
-}
+//         <h1>
+//             Lite om mig
+//         </h1>
+
+//             </div>
+//             <div>Importerat: { router. }
+//             </div>
+//         </article>
+//     )
+// }
 
 export default Me;
