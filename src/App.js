@@ -4,17 +4,16 @@ import {
     Link,
     Route,
 } from 'react-router-dom'
-import ReportLink from "./Reports.js"
+import Report from './Report';
+import ReportList from "./Reports.js"
 import Me from "./Me.js"
 import './style/App.scss'
 import Form from './composeReport'
 import Registration from "./registration";
 import Authenticate from "./auth";
-import Report from './Report';
-
-
 
 class App extends React.Component {
+
     render() {
         return (
             <Router>
@@ -28,11 +27,11 @@ class App extends React.Component {
                     </ul>
                 </div>
                 <Route exact path='/' component={Me}/>
-                <Route path='/reports' component={ReportLink}/>
-                <Route path= {`/reports/week/${week}`} component={Report}/>
-                <Route path='/compose' component={Form}/>
-                <Route path='/register' component={Registration}/>
-                <Route path='/authenticate' component={Authenticate}/>
+                <Route exact path='/reports' component={ReportList}/>
+                <Route exact path='/reports/week/:week' component={Report}/>
+                <Route exact path='/compose' component={Form}/>
+                <Route exact path='/register' component={Registration}/>
+                <Route exact path='/authenticate' component={Authenticate}/>
             </Router>
         )
     }

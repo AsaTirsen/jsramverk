@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
-const ReportLink = ({match}) => {
-        // const kmom = match.params.kmom;
+const ReportLink = () => {
         const [reports, setReports] = useState([]);
 
         useEffect(() => {
@@ -21,10 +20,10 @@ const ReportLink = ({match}) => {
                 <div className='main'>
                     <h1>Redovisningar</h1>
                     <ul>
-                        {reports.map(({id, title, week, longtext}) => (
+                        {reports.map(({title, week}) => (
                             week &&
                             <li key={title}>
-                                <Link className='reportlink' to={`/reports/week/${week}`}>{title}</Link>
+                                <Link className='reportlink' to={`reports/week/${week}`}>{title}</Link>
                             </li>
                         ))}
                     </ul>
