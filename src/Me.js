@@ -28,18 +28,4 @@ const Me = () => {
     );
 };
 
-// function Me () {
-//     return (
-
-//         <h1>
-//             Lite om mig
-//         </h1>
-
-//             </div>
-//             <div>Importerat: { router. }
-//             </div>
-//         </article>
-//     )
-// }
-
 export default Me;

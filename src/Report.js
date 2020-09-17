@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
 const ReactMarkdown = require('react-markdown')
 
@@ -23,6 +24,7 @@ const Report = ({match}) => {
                 <div>
                     <ReactMarkdown source={report} />
                 </div>
+                <Link to="/edit">Redigera</Link>
             </div>
         </main>
     );

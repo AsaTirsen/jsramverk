@@ -7,6 +7,7 @@ export class Form extends Component {
         this.state = {
             data: {
                 title: '',
+                week:'',
                 text: '',
             },
         };
@@ -27,6 +28,9 @@ export class Form extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = this.state.data;
+        console.log(data.title)
+        console.log(data.week)
+        console.log(data.text)
         fetch('http://localhost:1337/reports', {
             method: 'POST',
             headers: {
@@ -43,6 +47,11 @@ export class Form extends Component {
                 <label className= "input-label">
                     titel:
                     <textarea className= "input" name="title" value={this.state.data.title} onChange={this.handleTextareaChange}/>
+                </label>
+                <br/>
+                <label className= "input-label">
+                    vecka:
+                    <textarea className= "input" name="week" value={this.state.data.week} onChange={this.handleTextareaChange}/>
                 </label>
                 <br/>
                 <label className= "input-label">
