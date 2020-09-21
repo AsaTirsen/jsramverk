@@ -43,7 +43,7 @@ export class Registration extends Component {
 
     render() {
         return (
-            <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+            <form id="contact-form" className="form" onSubmit={this.handleSubmit.bind(this)} method="POST">
                 <h3>Skapa användare</h3>
                 <label className="input-label">Emailadress</label>
                 <input type="email" className="input" name="email" value={this.state.data.email} onChange={this.handleTextareaChange}/>

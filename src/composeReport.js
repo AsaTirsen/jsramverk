@@ -43,7 +43,7 @@ export class Form extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="form" onSubmit={this.handleSubmit}>
                 <label className= "input-label">
                     titel:
                     <textarea className= "input" name="title" value={this.state.data.title} onChange={this.handleTextareaChange}/>

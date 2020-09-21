@@ -37,7 +37,7 @@ export class Authenticate extends Component {
             console.log(res);
             if (!res.data) {
                 alert("Vänligen skapa användare")
-                this.props.history.goBack();
+                this.props.history.push('./register');
             } else {
                 if(res.data.token) {
                     localStorage.setItem('token', res.data.token);
@@ -48,7 +48,7 @@ export class Authenticate extends Component {
 
     render() {
         return (
-            <form id="contact-form" onSubmit={this.handleSubmit} method="POST">
+            <form id="contact-form" className="form" onSubmit={this.handleSubmit} method="POST">
                 <h3>Logga in</h3>
                 <label className="input-label">Emailadress</label>
                 <input type="email" className="input" name="email" value={this.state.data.email} onChange={this.handleTextareaChange.bind(this)}/>

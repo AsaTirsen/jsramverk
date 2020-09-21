@@ -21,7 +21,7 @@ const ReportLink = () => {
                     <h1>Redovisningar</h1>
                     <ul>
                         {reports.map(({title, week}) => (
-                            week &&
+                            week && week < 11 &&
                             <li key={title}>
                                 <Link className='reportlink' to={`reports/week/${week}`}>{title}</Link>
                             </li>

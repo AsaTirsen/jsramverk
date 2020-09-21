@@ -2,6 +2,11 @@
 $line-height: 1.4;
 $body-font-size: 1.4rem;
 
+.form {
+  width: 80%;
+  padding-left: 10%;
+}
+
 
 .input {
   font-size: $body-font-size;
@@ -29,6 +34,10 @@ $body-font-size: 1.4rem;
 @media (max-width: 667px) {
   .input {
     width: 100%;
+  }
+  .form {
+    width: 100%;
+    padding-left: 0;
   }
 }
 

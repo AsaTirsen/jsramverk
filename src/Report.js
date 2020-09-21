@@ -24,7 +24,7 @@ const Report = ({match}) => {
                 <div>
                     <ReactMarkdown source={report} />
                 </div>
-                <Link to="/edit">Redigera</Link>
+                <Link to={`/reports/week/${week}/edit`}>Redigera</Link>
             </div>
         </main>
     );
