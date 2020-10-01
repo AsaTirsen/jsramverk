@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {baseUrl} from "./base";
 
 export class Form extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ export class Form extends Component {
         console.log(data.title)
         console.log(data.week)
         console.log(data.text)
-        fetch('http://localhost:1337/reports', {
+        fetch( baseUrl() + 'reports', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

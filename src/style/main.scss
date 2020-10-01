@@ -18,9 +18,10 @@
 
 .textarea {
   margin: 0 1em 1em 1em;
+  min-height: 400px;
 }
 
-img {
+.img {
   float: left;
   margin: 1em;
   width: 50%;
@@ -29,7 +30,7 @@ img {
   .main{
     width: 100%;
   }
-  img {
+  .img {
     margin: 1em;
     width: 90%;
   }

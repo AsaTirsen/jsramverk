@@ -1,4 +1,5 @@
 import React from 'react';
+import {baseUrl} from "./base";
 
 class Edit extends React.Component {
     constructor(props) {
@@ -17,10 +18,9 @@ class Edit extends React.Component {
 
     componentDidMount() {
         console.log('fetch')
-        fetch(`http://localhost:1337/reports/week/${this.props.match.params.week}`)
+        fetch(baseUrl() +`reports/week/${this.props.match.params.week}`)
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 const report = (res.data[0])
                 this.setState({
                     data: {

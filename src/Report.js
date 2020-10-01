@@ -1,5 +1,7 @@
 import {Link} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
+import {baseUrl} from "./base";
+
 const ReactMarkdown = require('react-markdown')
 
 const Report = ({match}) => {
@@ -9,7 +11,7 @@ const Report = ({match}) => {
 
     useEffect(() => {
         console.log('fetch')
-        fetch(`http://localhost:1337/reports/week/${week}`)
+        fetch(baseUrl() + `reports/week/${week}`)
             .then(res => res.json())
             .then(res => {
                 console.log(res.data[0].longtext)

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {baseUrl} from "./base";
 
 
 export class Registration extends Component {
@@ -26,7 +27,7 @@ export class Registration extends Component {
         event.preventDefault();
         const data = this.state.data;
         console.log(data)
-        fetch('http://localhost:1337/register', {
+        fetch(baseUrl() + 'register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import {baseUrl} from "./base";
 
 export class Authenticate extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ export class Authenticate extends Component {
         event.preventDefault();
         const data = this.state.data;
         console.log(data)
-        fetch('http://localhost:1337/login', {
+        fetch(baseUrl() + "login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

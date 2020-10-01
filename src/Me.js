@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {baseUrl} from "./base.js";
 import kids from "./minaBarn.jpeg";
 import "./style/App.scss";
 
@@ -6,8 +7,8 @@ const Me = () => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        console.log('fetch')
-        fetch('http://localhost:1337/')
+        console.log(baseUrl())
+        fetch(baseUrl())
             .then(res => res.json())
             .then(res => {
                 console.log(res.data[0])
@@ -19,7 +20,7 @@ const Me = () => {
         <main>
             <article className= 'main'>
                 <h1>{message.title}</h1>
-                <img src={kids} alt="Bild på mina barn" />
+                <img className="img" src={kids} alt="Bild på mina barn" />
                 <div className='textarea'>
             <p>{message.longtext}</p>
                 </div>
@@ -29,3 +30,4 @@ const Me = () => {
 };
 
 export default Me;
+

@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {baseUrl} from "./base";
 
 const ReportLink = () => {
         const [reports, setReports] = useState([]);
 
         useEffect(() => {
             console.log('fetch')
-            fetch('http://localhost:1337/reports/')
+            fetch(baseUrl() + "reports/")
                 .then(res => res.json())
                 .then(res => {
                     console.log(res.data)
