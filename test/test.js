@@ -79,7 +79,7 @@ test.describe("Test", function() {
         done();
     });
 
-    test.it("create user", function(done) {
+    test.it("Test create user", function(done) {
         // Use nav link to go to home page
         browser.findElement(By.linkText("Skapa användare")).then(function(element) {
             element.click();
