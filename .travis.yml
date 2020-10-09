@@ -17,3 +17,9 @@ script:
 after_success:
   - npm run report-coveralls
   - npm run report-codecov
+
+env:
+  global:
+    - MOZ_HEADLESS=1
+addons:
+  firefox: latest
