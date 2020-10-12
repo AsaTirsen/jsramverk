@@ -45,10 +45,7 @@ class Edit extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = this.state.data;
-        console.log(data.title)
-        console.log(data.week)
-        console.log(data.text)
-        fetch('http://localhost:1337/reports', {
+        fetch(baseUrl() + 'reports', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

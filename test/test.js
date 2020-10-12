@@ -8,14 +8,14 @@ let browser;
 
 require("geckodriver");
 
-test.describe("Test", function() {
+test.describe( "Test", function() {
 
     test.beforeEach(function(done) {
         this.timeout(20000);
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox()).build();
 
-        browser.get("http://127.0.0.1:3000/");
+        browser.get("https://my-app.asatirsen.me/");
         done();
     });
 
