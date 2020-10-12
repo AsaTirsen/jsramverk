@@ -12,7 +12,8 @@ before_script:
   - npm install
 
 script:
-  - npm run start-test
+  - npm start &
+  - npm run mocha
 
 after_success:
   - npm run report-coveralls

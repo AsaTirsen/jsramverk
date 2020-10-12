@@ -15,7 +15,7 @@ test.describe( "Test", function() {
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox()).build();
 
-        browser.get("https://my-app.asatirsen.me/");
+        browser.get("http://127.0.0.1:3000");
         done();
     });
 
