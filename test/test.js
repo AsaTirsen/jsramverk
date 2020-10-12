@@ -31,12 +31,12 @@ test.describe( "Test", function() {
             assert.equal(title, "Me sidan");
         });
 
-        // Check correct heading
-        browser.findElement(By.css("h1")).then(function(element) {
-            element.getText().then(function(text) {
-                assert.equal(text, "Lite om mig");
-            });
-        });
+        // // Check correct heading
+        // browser.findElement(By.css("h1")).then(function(element) {
+        //     element.getText().then(function(text) {
+        //         assert.equal(text, "Lite om mig");
+        //     });
+        // });
 
         // Check correct link
         browser.findElement(By.css("li")).then(function(element) {
