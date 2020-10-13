@@ -16,6 +16,7 @@ test.describe( "Test", function() {
             .withCapabilities(webdriver.Capabilities.firefox()).build();
         console.log("browser" + browser)
         browser.get("http://127.0.0.1:3000/");
+        browser.manage().timeouts().implicitlyWait(10);
         done();
     });
 

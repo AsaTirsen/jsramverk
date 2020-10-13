@@ -12,9 +12,7 @@ before_script:
   - npm install
 
 script:
-  - npm start &
-  - sleep 120
-  - npm run mocha
+  - npm run ci
 
 after_success:
   - npm run report-coveralls
