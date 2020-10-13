@@ -46,8 +46,11 @@ test.describe("Test", function () {
         let element = await browser.findElement(By.linkText("Redovisningar"))
         element.click();
 
-        let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
-        element2.click();
+        let element2 = await browser.wait(until.elementTextIs(await browser.findElement(By.linkText("Redovisning vecka 2")), "Redovisning vecka 2"),5000)
+            element2.click();
+        //
+        // let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
+        // element2.click();
 
         // Check correct heading
         await browser.wait(until.elementTextIs(await browser.findElement(By.css("h2")), "Available Scripts"), 5000);
