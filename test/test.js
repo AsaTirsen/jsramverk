@@ -46,8 +46,20 @@ test.describe("Test", function () {
         let element = await browser.findElement(By.linkText("Redovisningar"))
         element.click();
 
-        let element2 = await browser.wait(until.elementTextIs(await browser.findElement(By.linkText("Redovisning vecka 2")), "Redovisning vecka 2"),5000)
-            element2.click();
+        // Check correct URL ending
+        let url1 = await browser.getCurrentUrl();
+        console.log(url1);
+        assert.ok(url1.endsWith("reports"))
+
+
+        let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
+
+        await element2
+        element2.click()
+
+        let url = await browser.getCurrentUrl();
+        console.log(url);
+        assert.ok(url.endsWith("reports/week/2"));
         //
         // let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
         // element2.click();
@@ -56,8 +68,7 @@ test.describe("Test", function () {
         await browser.wait(until.elementTextIs(await browser.findElement(By.css("h2")), "Available Scripts"), 5000);
 
         // Check correct URL ending
-        let url = await browser.getCurrentUrl();
-        assert.ok(url.endsWith("reports/week/2"));
+
     });
 
     test.it("Test create user", async function () {
