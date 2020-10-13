@@ -13,7 +13,7 @@ before_script:
 
 script:
   - npm start &
-  - sleep 10
+  - sleep 120
   - npm run mocha
 
 after_success:
