@@ -12,7 +12,7 @@ before_script:
   - npm install
 
 script:
-  - npm start &
+  - npm start & sleep 10
   - npm run mocha
 
 after_success:

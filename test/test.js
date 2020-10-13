@@ -9,13 +9,13 @@ let browser;
 require("geckodriver");
 
 test.describe( "Test", function() {
-
     test.beforeEach(function(done) {
+        console.log("before timeout");
         this.timeout(20000);
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox()).build();
-
-        browser.get("http://127.0.0.1:3000");
+        console.log("browser" + browser)
+        browser.get("http://127.0.0.1:3000/");
         done();
     });
 
@@ -31,12 +31,12 @@ test.describe( "Test", function() {
             assert.equal(title, "Me sidan");
         });
 
-        // // Check correct heading
-        // browser.findElement(By.css("h1")).then(function(element) {
-        //     element.getText().then(function(text) {
-        //         assert.equal(text, "Lite om mig");
-        //     });
-        // });
+        // Check correct heading
+        browser.findElement(By.css("h1")).then(function(element) {
+            element.getText().then(function(text) {
+                assert.equal(text, "Lite om mig");
+            });
+        });
 
         // Check correct link
         browser.findElement(By.css("li")).then(function(element) {
