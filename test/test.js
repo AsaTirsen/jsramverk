@@ -14,7 +14,6 @@ test.describe("Test", function () {
         this.timeout(20000);
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox()).build();
-        //browser.manage().setTimeouts( { implicit: 10000});
         browser.get("http://127.0.0.1:3000/");
     });
 
@@ -50,22 +49,18 @@ test.describe("Test", function () {
         let url1 = await browser.getCurrentUrl();
         assert.ok(url1.endsWith("reports"));
 
-        await browser.wait(until.elementTextIs(await browser.findElement(By.linkText("Redovisning vecka 2")), "Redovisning vecka 2"), 5000)
+        await browser.wait(until.elementLocated(By.css('.main li')));
+        let li = await browser.findElement(By.css('.main li'));
+        await browser.wait(until.elementTextIs(li, "Redovisning vecka 1"));
 
-        let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
+        let element2 = await browser.findElement(By.linkText("Redovisning vecka 1"))
         element2.click();
 
         let url = await browser.getCurrentUrl();
-        assert.ok(url.endsWith("reports/week/2"));
-        //
-        // let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
-        // element2.click();
+        assert.ok(url.endsWith("reports/week/1"));
 
         // Check correct heading
-        await browser.wait(until.elementTextIs(await browser.findElement(By.css("h2")), "Available Scripts"), 5000);
-
-        // Check correct URL ending
-
+        await browser.wait(until.elementTextIs(await browser.findElement(By.css("h2")), "Available Scripts"));
     });
 
     test.it("Test create user", async function () {
