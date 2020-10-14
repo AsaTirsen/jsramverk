@@ -59,6 +59,7 @@ test.describe("Test", function () {
         let url = await browser.getCurrentUrl();
         assert.ok(url.endsWith("reports/week/1"));
 
+
         // Check correct heading
         await browser.wait(until.elementTextIs(await browser.findElement(By.css("h2")), "Available Scripts"));
     });
