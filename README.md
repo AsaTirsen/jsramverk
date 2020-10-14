@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/AsaTirsen/jsramverk-my-app.svg?branch=master)](https://travis-ci.org/AsaTirsen/jsramverk-my-app)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AsaTirsen/jsramverk-my-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AsaTirsen/jsramverk-my-app/?branch=master)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
