@@ -48,17 +48,14 @@ test.describe("Test", function () {
 
         // Check correct URL ending
         let url1 = await browser.getCurrentUrl();
-        console.log(url1);
-        assert.ok(url1.endsWith("reports"))
+        assert.ok(url1.endsWith("reports"));
 
+        await browser.wait(until.elementTextIs(await browser.findElement(By.linkText("Redovisning vecka 2")), "Redovisning vecka 2"), 5000)
 
         let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
-
-        await element2
-        element2.click()
+        element2.click();
 
         let url = await browser.getCurrentUrl();
-        console.log(url);
         assert.ok(url.endsWith("reports/week/2"));
         //
         // let element2 = await browser.findElement(By.linkText("Redovisning vecka 2"))
@@ -74,7 +71,7 @@ test.describe("Test", function () {
     test.it("Test create user", async function () {
         // Use nav link to go to home page
         let link = browser.findElement(By.linkText("Skapa användare"))
-            link.click();
+        link.click();
 
         //Check correct heading
         await browser.wait(until.elementTextIs(await browser.findElement(By.css("h3")), "Skapa användare"), 5000);
