@@ -17,7 +17,8 @@
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "^3.6.0",
+    "websocket": "^1.0.32"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,7 +31,6 @@
     "mocha": "mocha test/**/*.js",
     "start-server": "npm start",
     "ci": "start-server-and-test start-server http://localhost:3000 mocha"
-
   },
   "eslintConfig": {
     "extends": "react-app"
