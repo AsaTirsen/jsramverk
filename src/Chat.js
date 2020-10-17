@@ -59,15 +59,7 @@ class Chat extends React.Component {
 
     //TODO
 
-    // add "enter" function to stop entry adn then "save"
     // add time stamp
-    //Put messages + time stamp in another div to "save"
-
-    printItemInArray (array) {
-        array.forEach((item) => {
-            return item + '\n';
-        });
-    }
 
 
 
@@ -124,12 +116,13 @@ class Chat extends React.Component {
                         </React.Fragment>
                     ))}
                 </div>
+                <div className="messages">{messages.map((item, index) => {return  <p key={index}>{item + '\n'}</p>})}</div>
+
                 <div className="new-message"><input type="text" name="message" value={this.state.message}
                                                     onChange={this.onTextBoxStateChange}
                                                     onKeyPress={this.onEnter}/>
                 </div>
-                {messages.map((item) => {return <div className="messages"><input type="text" name="message" value={item + '\n'
-                } readOnly/></div>})}
+
             </div>
             <div className="history-holder">
                 <ul>
