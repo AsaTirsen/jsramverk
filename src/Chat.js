@@ -108,7 +108,6 @@ class Chat extends React.Component {
 
     showTextBoxSection = () => (
         <div className="main-content">
-            <div className="document-holder">
                 <div className="currentusers">
                     {this.state.currentUsers.map(user => (
                         <React.Fragment key={user.username}>
@@ -117,13 +116,13 @@ class Chat extends React.Component {
                     ))}
                 </div>
                 <div className="messages">{messages.map((item, index) => {return  <p key={index}>{item + '\n'}</p>})}</div>
-
-                <div className="new-message"><input type="text" name="message" value={this.state.message}
+            <label className="input-label">
+                Skriv ditt meddelande</label>
+                <div className="new-message">
+                    <input type="text" name="message" value={this.state.message}
                                                     onChange={this.onTextBoxStateChange}
-                                                    onKeyPress={this.onEnter}/>
+                                                                                   onKeyPress={this.onEnter}/>
                 </div>
-
-            </div>
             <div className="history-holder">
                 <ul>
                     {this.state.userActivity.map((activity, index) => <li key={`activity-${index}`}>{activity}</li>)}
@@ -139,7 +138,7 @@ class Chat extends React.Component {
         } = this.state;
         return (
             <React.Fragment>
-                <div className="container-fluid">
+                <div className="main">
                     {username ? this.showTextBoxSection() : this.showLoginSection()}
                 </div>
             </React.Fragment>

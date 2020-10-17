@@ -1,0 +1,31 @@
+//styles the chatboxes
+
+.new-message {
+  width: 70%;
+  margin: 0 auto 2em auto;
+  height: 3em;
+}
+
+.new-message input {
+  width: 100%;
+  height: 3em;
+  margin-top: 2em;
+}
+.messages {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 10em;
+  border: 2px solid #333;
+}
+
+
+.form-control {
+  width: 60%;
+  margin: 10%;
+  height: 3em;
+}
+
+.btn-primary {
+  height: 3em;
+}
+
