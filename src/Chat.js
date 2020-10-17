@@ -5,6 +5,8 @@ import {w3cwebsocket as W3CWebSocket} from "websocket";
 const client = new W3CWebSocket('ws://127.0.0.1:1340');
 const messages = [];
 
+//const messageText = [];
+
 class Chat extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +16,8 @@ class Chat extends React.Component {
             username: null,
             message: "Write  here"
         };
+        this.onTextBoxStateChange = this.onTextBoxStateChange.bind(this);
+        this.onEnter = this.onEnter.bind(this);
     }
 
     logInUser = () => {
@@ -34,15 +38,23 @@ class Chat extends React.Component {
         }
     }
 
+
     onTextBoxStateChange(event) {
         console.log(event.target.value)
-        this.setState({message: event.target.value}, () => {
-            client.send(JSON.stringify({
-                type: "contentchange",
-                username: this.state.username,
-                content: this.state.message
-            }));
-        });
+        this.setState({message: event.target.value});
+    }
+
+    onEnter(event) {
+        console.log(event.target.value)
+        if (event.key === 'Enter') {
+            this.setState({message: event.target.value}, () => {
+                client.send(JSON.stringify({
+                    type: "contentchange",
+                    username: this.state.username,
+                    content: this.state.message
+                }));
+            });
+        }
     }
 
     //TODO
@@ -51,8 +63,15 @@ class Chat extends React.Component {
     // add time stamp
     //Put messages + time stamp in another div to "save"
 
+    printItemInArray (array) {
+        array.forEach((item) => {
+            return item + '\n';
+        });
+    }
 
-    componentWillMount() {
+
+
+    componentDidMount() {
         client.onopen = () => {
             console.log('WebSocket Client Connected');
         };
@@ -67,6 +86,7 @@ class Chat extends React.Component {
                 stateToChange.message = dataFromServer.data.textBoxContent;
                 console.log(stateToChange.message);
                 messages.push(stateToChange.message);
+                console.log(messages);
             }
             stateToChange.userActivity = dataFromServer.data.userActivity;
             this.setState({
@@ -104,9 +124,12 @@ class Chat extends React.Component {
                         </React.Fragment>
                     ))}
                 </div>
-                <div className="new-message"> <input type="text" name="message" value={this.state.message} onChange={this.onTextBoxStateChange.bind(this)}/>
+                <div className="new-message"><input type="text" name="message" value={this.state.message}
+                                                    onChange={this.onTextBoxStateChange}
+                                                    onKeyPress={this.onEnter}/>
                 </div>
-                <div className="message"><input type="text" name="message" value={messages} readOnly/></div>
+                {messages.map((item) => {return <div className="messages"><input type="text" name="message" value={item + '\n'
+                } readOnly/></div>})}
             </div>
             <div className="history-holder">
                 <ul>
