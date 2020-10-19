@@ -3,7 +3,12 @@ import {w3cwebsocket as W3CWebSocket} from "websocket";
 
 
 const client = new W3CWebSocket('ws://127.0.0.1:1340');
-const messages = [];
+let messages = {};
+let previousMessages = [];
+
+// let date = new Date();
+// let timestamp = date.getDate() + "/" + (date.getMonth() +1) + " kl " + date.getHours() + ':' + date.getMinutes();
+//
 
 //const messageText = [];
 
@@ -14,7 +19,9 @@ class Chat extends React.Component {
             currentUsers: [],
             userActivity: [],
             username: null,
-            message: "Write  here"
+            activeUser: "",
+            message: "",
+            timeStamp: ""
         };
         this.onTextBoxStateChange = this.onTextBoxStateChange.bind(this);
         this.onEnter = this.onEnter.bind(this);
@@ -37,30 +44,27 @@ class Chat extends React.Component {
             });
         }
     }
-
-
     onTextBoxStateChange(event) {
         console.log(event.target.value)
         this.setState({message: event.target.value});
     }
 
     onEnter(event) {
-        console.log(event.target.value)
         if (event.key === 'Enter') {
-            this.setState({message: event.target.value}, () => {
-                client.send(JSON.stringify({
-                    type: "contentchange",
-                    username: this.state.username,
-                    content: this.state.message
-                }));
-            });
+            console.log(event.target.value)
+            client.send(JSON.stringify({
+                type: "contentchange",
+                username: this.state.username,
+                content: this.state.message,
+            }))
+            console.log(this.state.timeStamp)
         }
     }
 
+
     //TODO
 
-    // add time stamp
-
+    //Change message about joining chat...
 
 
     componentDidMount() {
@@ -72,15 +76,23 @@ class Chat extends React.Component {
             const stateToChange = {};
             if (dataFromServer.type === "userevent") {
                 stateToChange.currentUsers = Object.values(dataFromServer.data.users);
-                console.log("object values users")
+                // user = stateToChange.currentUsers.map(user => user.username);
             } else if (dataFromServer.type === "contentchange") {
-                console.log("content change reaches server")
                 stateToChange.message = dataFromServer.data.textBoxContent;
-                console.log(stateToChange.message);
-                messages.push(stateToChange.message);
-                console.log(messages);
+                stateToChange.activeUser = dataFromServer.data.activeUser;
+                stateToChange.timeStamp = dataFromServer.data.time;
+                console.log(stateToChange.timeStamp)
+                messages = {
+                    message: stateToChange.message,
+                    username: stateToChange.activeUser,
+                    time: stateToChange.timeStamp
+                };
+                previousMessages.push(messages.username, messages.time, messages.message);
+                console.log(messages.time);
+                stateToChange.message = "";
             }
             stateToChange.userActivity = dataFromServer.data.userActivity;
+            console.log(stateToChange.userActivity)
             this.setState({
                 ...stateToChange
             });
@@ -92,8 +104,7 @@ class Chat extends React.Component {
             <div className="account__wrapper">
                 <div className="account__card">
                     <div className="account__profile">
-                        <p className="account__name">Hello, user!</p>
-                        <p className="account__sub">Join to edit the document</p>
+                        <p className="account__sub">Enter your nickname</p>
                     </div>
                     <input name="username" ref={(input) => {
                         this.username = input;
@@ -108,26 +119,33 @@ class Chat extends React.Component {
 
     showTextBoxSection = () => (
         <div className="main-content">
-                <div className="currentusers">
-                    {this.state.currentUsers.map(user => (
-                        <React.Fragment key={user.username}>
-                            <li> id={user.username} className="userInfo"</li>
-                        </React.Fragment>
-                    ))}
-                </div>
-                <div className="messages">{messages.map((item, index) => {return  <p key={index}>{item + '\n'}</p>})}</div>
+            <div className="currentusers">
+                {this.state.currentUsers.map(user => (
+                    <React.Fragment key={user.username}>
+                        <li>{user.username} joined the chat{" " + this.state.timeStamp}</li>
+                    </React.Fragment>
+                ))}
+            </div>
+            <div className="messages">
+                {previousMessages.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <li>{item}</li>
+                    </React.Fragment>))}
+                {/*<p>{messages.name}</p>*/}
+                {/*<p>{messages.message}</p>*/}
+            </div>
             <label className="input-label">
                 Skriv ditt meddelande</label>
-                <div className="new-message">
-                    <input type="text" name="message" value={this.state.message}
-                                                    onChange={this.onTextBoxStateChange}
-                                                                                   onKeyPress={this.onEnter}/>
-                </div>
-            <div className="history-holder">
-                <ul>
-                    {this.state.userActivity.map((activity, index) => <li key={`activity-${index}`}>{activity}</li>)}
-                </ul>
+            <div className="new-message">
+                <input type="text" name="message" value={this.state.message}
+                       onChange={this.onTextBoxStateChange}
+                       onKeyPress={this.onEnter}/>
             </div>
+            {/*<div className="history-holder">*/}
+            {/*    <ul>*/}
+            {/*        {this.state.userActivity.map((activity, index) => <li key={`activity-${index}`}>{activity}</li>)}*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
         </div>
     )
 
