@@ -87,7 +87,7 @@ class Chat extends React.Component {
                     username: stateToChange.activeUser,
                     time: stateToChange.timeStamp
                 };
-                previousMessages.push(messages.username, messages.time, messages.message);
+                previousMessages.push(messages);
                 console.log(messages.time);
                 stateToChange.message = "";
             }
@@ -100,11 +100,10 @@ class Chat extends React.Component {
     }
 
     showLoginSection = () => (
-        <div className="account">
-            <div className="account__wrapper">
-                <div className="account__card">
-                    <div className="account__profile">
-                        <p className="account__sub">Enter your nickname</p>
+
+                <div>
+                    <div>
+                        <h2 className="instruction">Enter your nickname</h2>
                     </div>
                     <input name="username" ref={(input) => {
                         this.username = input;
@@ -113,39 +112,30 @@ class Chat extends React.Component {
                             className="btn btn-primary account__btn">Join
                     </button>
                 </div>
-            </div>
-        </div>
     )
 
     showTextBoxSection = () => (
-        <div className="main-content">
-            <div className="currentusers">
+        <div>
+            <div>
                 {this.state.currentUsers.map(user => (
                     <React.Fragment key={user.username}>
-                        <li>{user.username} joined the chat{" " + this.state.timeStamp}</li>
+                        <li className="label">{user.username} joined the chat{" " + this.state.timeStamp}</li>
                     </React.Fragment>
                 ))}
             </div>
             <div className="messages">
-                {previousMessages.map((item, index) => (
+                {previousMessages.map((message, index) => (
                     <React.Fragment key={index}>
-                        <li>{item}</li>
+                        <li className="user">{message.username + " " + message.time}</li>
+                        <li className="message">{message.message}</li>
                     </React.Fragment>))}
-                {/*<p>{messages.name}</p>*/}
-                {/*<p>{messages.message}</p>*/}
             </div>
-            <label className="input-label">
-                Skriv ditt meddelande</label>
+            <label className="label">Skriv ditt meddelande</label>
             <div className="new-message">
                 <input type="text" name="message" value={this.state.message}
                        onChange={this.onTextBoxStateChange}
                        onKeyPress={this.onEnter}/>
             </div>
-            {/*<div className="history-holder">*/}
-            {/*    <ul>*/}
-            {/*        {this.state.userActivity.map((activity, index) => <li key={`activity-${index}`}>{activity}</li>)}*/}
-            {/*    </ul>*/}
-            {/*</div>*/}
         </div>
     )
 
