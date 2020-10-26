@@ -2,15 +2,12 @@ import React from 'react';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 
 
-const client = new W3CWebSocket('ws://127.0.0.1:1340');
+//const client = new W3CWebSocket('ws://127.0.0.1:1340');
+const client = new W3CWebSocket('wss://chat.asatirsen.me');
+
 let messages = {};
 let previousMessages = [];
-
-// let date = new Date();
-// let timestamp = date.getDate() + "/" + (date.getMonth() +1) + " kl " + date.getHours() + ':' + date.getMinutes();
-//
-
-//const messageText = [];
+let messageHistory = [];
 
 class Chat extends React.Component {
     constructor(props) {
@@ -21,7 +18,8 @@ class Chat extends React.Component {
             username: null,
             activeUser: "",
             message: "",
-            timeStamp: ""
+            timeStamp: "",
+            messageHistory: ""
         };
         this.onTextBoxStateChange = this.onTextBoxStateChange.bind(this);
         this.onEnter = this.onEnter.bind(this);
@@ -29,7 +27,6 @@ class Chat extends React.Component {
 
     logInUser = () => {
         const username = this.username.value;
-        console.log(username)
         if (username.trim()) {
             const data = {
                 username
@@ -45,19 +42,16 @@ class Chat extends React.Component {
         }
     }
     onTextBoxStateChange(event) {
-        console.log(event.target.value)
         this.setState({message: event.target.value});
     }
 
     onEnter(event) {
         if (event.key === 'Enter') {
-            console.log(event.target.value)
             client.send(JSON.stringify({
                 type: "contentchange",
                 username: this.state.username,
                 content: this.state.message,
             }))
-            console.log(this.state.timeStamp)
         }
     }
 
@@ -73,26 +67,28 @@ class Chat extends React.Component {
         };
         client.onmessage = (message) => {
             const dataFromServer = JSON.parse(message.data);
+            console.log(dataFromServer);
+            if (!dataFromServer.data) {
+                return;
+            }
             const stateToChange = {};
             if (dataFromServer.type === "userevent") {
                 stateToChange.currentUsers = Object.values(dataFromServer.data.users);
-                // user = stateToChange.currentUsers.map(user => user.username);
+                stateToChange.messageHistory = dataFromServer.data.messageLog
+                messageHistory = stateToChange.messageHistory
             } else if (dataFromServer.type === "contentchange") {
                 stateToChange.message = dataFromServer.data.textBoxContent;
                 stateToChange.activeUser = dataFromServer.data.activeUser;
                 stateToChange.timeStamp = dataFromServer.data.time;
-                console.log(stateToChange.timeStamp)
                 messages = {
                     message: stateToChange.message,
                     username: stateToChange.activeUser,
                     time: stateToChange.timeStamp
                 };
                 previousMessages.push(messages);
-                console.log(messages.time);
                 stateToChange.message = "";
             }
             stateToChange.userActivity = dataFromServer.data.userActivity;
-            console.log(stateToChange.userActivity)
             this.setState({
                 ...stateToChange
             });
@@ -124,6 +120,11 @@ class Chat extends React.Component {
                 ))}
             </div>
             <div className="messages">
+                {messageHistory.map((obj, index) => (
+                    <React.Fragment key={index}>
+                        <li className="user">{obj.activeUser + " " + obj.time}</li>
+                        <li className="message">{obj.textBoxContent}</li>
+                    </React.Fragment>))}
                 {previousMessages.map((message, index) => (
                     <React.Fragment key={index}>
                         <li className="user">{message.username + " " + message.time}</li>
